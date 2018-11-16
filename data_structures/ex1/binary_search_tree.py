@@ -8,7 +8,24 @@ class BinarySearchTree:
     pass    
 
   def breadth_first_for_each(self, cb):
-    pass
+    # make stack
+    visit = [self]
+    # callback on root value
+    cb(self.value)
+    # while visit has a value
+    while visit:
+      # current value = first element in visit stack and is removed
+      current = visit.pop(0)
+      if current.left:
+        # if current.left exists then callback on left.value
+        cb(current.left.value)
+        # current.left node is added to stack
+        visit.append(current.left)
+      if current.right:
+        # if current.right exists then callback on right.value
+        cb(current.right.value)
+        # current.right node is added to stack
+        visit.append(current.right)
 
   def insert(self, value):
     new_tree = BinarySearchTree(value)
